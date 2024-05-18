@@ -1,0 +1,22 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: transaction_service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/transactions/**
+        - id: users_service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/users/**
+
